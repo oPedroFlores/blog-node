@@ -1,0 +1,49 @@
+<%- include ('./partials/header.ejs') %>
+
+  <% if (session.user) { %>
+    <%- include('./partials/navbar') %>
+      <% }else { %>
+        <%- include('./partials/homenavbar') %>
+          <% } %>
+
+
+            <body>
+              <br>
+              <div class="container">
+
+                <div class="jumbotron">
+                  <h1 class="display-4">Bem Vindo!</h1>
+                  <p class="lead">Este é um exemplo de blog com Node :)</p>
+                  <hr class="my-4">
+                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt, alias?</p>
+
+                </div>
+                <% if (articles && articles.length> 0) { %>
+                  <% articles.forEach(article=> { %>
+                    <div class="card">
+                      <div class="card-header">
+                        <h2>
+                          <%= article.title %>
+                        </h2>
+                      </div>
+                      <div class="card-body">
+                        <a href="/<%= article.slug %>" class="btn btn-success">Ler Artigo</a>
+                      </div>
+                    </div>
+                    <br>
+                    <% }) %>
+                      <% } else { %>
+                        <h2>Não há artigos para serem mostrados aqui :(</h2>
+                        <% } %>
+                          <% if (articles.length> 0) { %>
+                            <div class="row">
+                              <div class="col col-12">
+                                <a href="articles/page/2" style="float:right">Próxima -></a>
+                              </div>
+                            </div>
+                            <% } %>
+                              <br>
+              </div>
+            </body>
+
+            <%- include ('./partials/footer.ejs') %>

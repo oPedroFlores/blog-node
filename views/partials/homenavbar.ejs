@@ -1,0 +1,31 @@
+<nav class="navbar navbar-dark bg-primary navbar-expand-lg">
+  <a href="/" class="navbar-brand">
+    Blog
+  </a>
+
+  <ul class="navbar-nav mr-auto">
+    <li class="nav-item">
+    </li>
+    <% categories.slice(0, 12).forEach(category=> { %>
+      <li class="nav-item">
+        <a href="/category/<%= category.slug %>" class="nav-link">
+          <% if (category.title.length> 10) { %>
+            <%= category.title.slice(0, 10) + "..." %>
+              <% } else { %>
+                <%= category.title %>
+                  <% } %>
+        </a>
+      </li>
+      <% }) %>
+
+
+
+  </ul>
+  <ul class="navbar-nav ml-auto">
+    <li class="nav-item">
+      <a href="/login" class="nav-link ml-auto" style="font-size:1.25rem">
+        Login
+      </a>
+    </li>
+  </ul>
+</nav>

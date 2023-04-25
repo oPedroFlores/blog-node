@@ -1,0 +1,18 @@
+<%- include ('../../partials/header.ejs') %>
+  <%- include('../../partials/homenavbar') %>
+
+    <div class="container">
+      <div class="card mt-4">
+        <div class="card-header">
+          <h2>Login</h2>
+        </div>
+        <div class="card-body">
+          <form action="/authenticate" method="POST">
+            <input class="form-control py-4" type="email" name="email" placeholder="Email...">
+            <input class="form-control mt-3 py-4" type="password" name="password" placeholder="Senha...">
+            <button class="btn btn-success mt-3 btn-block p-3">Logar</button>
+          </form>
+        </div>
+      </div>
+
+      <%- include ('../../partials/footer.ejs') %>

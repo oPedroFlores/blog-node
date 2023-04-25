@@ -1,0 +1,61 @@
+<%- include ('../../partials/header.ejs') %>
+  <%- include ('../../partials/navbar.ejs') %>
+    <div class="container">
+      <div class="card">
+        <div class="card-header">
+          <h2>Editar artigo</h2>
+        </div>
+        <div class="card-body">
+          <form method="POST" action="/articles/update">
+            <input type="hidden" name="id" value="<%= article.id  %>">
+            <input class="form-control" type="text" name="title" placeholder="Titulo do artigo..." value="<%= article.title%>">
+            <textarea cols="30" rows="10" class="form-control" placeholder="Artigo..." name="body" id="article"></textarea>
+            <label>Categoria</label>
+            <select name="category" class="form-control">
+              <% categories.forEach((category)=> { %>
+                <% if(category.id==article.categoryId) { %>
+                  <option value="<%= category.id %>" selected>
+                    <%=category.title %>
+                  </option>
+                  <% } else { %>
+                    <option value="<%= category.id %>">
+                      <%=category.title %>
+                    </option>
+                    <% } %>
+                      <% }) %>
+
+            </select>
+
+            <button class="btn btn-success">Atualizar...</button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+
+    <%- include ('../../partials/footer.ejs') %>
+      <script src="/tinymce/tinymce.min.js"></script>
+      <script>
+        tinymce.init({
+          language: 'pt_BR',
+          selector: "#article",
+          plugins: [
+            'advlist',
+            'autolink',
+            'link',
+            'image',
+            'lists',
+            'preview',
+            'searchreplace',
+            'wordcount',
+            'fullscreen',
+            'insertdatetime',
+            'media',
+            'save',
+            'table',
+            'emoticons',
+          ]
+        }).then(function () {
+          tinymce.get('article').setContent('<%- article.body %>');
+        });
+      </script>
